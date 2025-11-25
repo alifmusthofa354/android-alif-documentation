@@ -33,22 +33,20 @@ export default defineConfig({
       {
         text: "Fase 0 Pre-requisites",
         collapsed: true,
-        items: [{ text: "Roadmps", link: "/document/getstarted/roadmaps" }],
-      },
-      {
-        text: "Fase 1 Programming Fundamentals",
-        collapsed: true,
-        items: [{ text: "Roadmps", link: "/document/getstarted/roadmaps" }],
-      },
-      {
-        text: "Fase 2 Android Basics",
-        collapsed: true,
-        items: [{ text: "Roadmps", link: "/document/getstarted/roadmaps" }],
-      },
-      {
-        text: "Fase 3 Jetpack Compose Basics",
-        collapsed: true,
-        items: [{ text: "Roadmps", link: "/document/getstarted/roadmaps" }],
+        items: [
+          {
+            text: "0.1 Programming Logic",
+            link: "/document/Level 1 BEGINNER/Fase 0 Pre-requisites/0.1 Programming Logic",
+          },
+          {
+            text: "0.2 Version Control Basics",
+            link: "/document/Level 1 BEGINNER/Fase 0 Pre-requisites/0.2 Version Control Basics",
+          },
+          {
+            text: "0.3 Terminal Command Line",
+            link: "/document/Level 1 BEGINNER/Fase 0 Pre-requisites/0.3 Terminal Command Line",
+          },
+        ],
       },
     ],
 

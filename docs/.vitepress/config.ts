@@ -174,11 +174,11 @@ export default defineConfig({
               },
               {
                 text: "gpt",
-                link: "/document/LEVEL 1 BEGINNER/Fase 3 Jetpack Compose Basics/gpt",
+                link: "/document/LEVEL 1 BEGINNER/Fase 3 Jetpack Compose Basics/ui-gpt",
               },
               {
                 text: "claude-table",
-                link: "/document/LEVEL 1 BEGINNER/Fase 3 Jetpack Compose Basics/claudetable",
+                link: "/document/LEVEL 1 BEGINNER/Fase 3 Jetpack Compose Basics/ui-claudetable",
               },
             ],
           },

@@ -93,6 +93,12 @@ Paket: `androidx.compose.material3.*`
 * `FilledTonalIconButton`
 * `OutlinedIconButton`
 
+## 📌 **Segmented Buttons** (Material 3 terbaru)
+
+* `SegmentedButton`
+* `SingleChoiceSegmentedButtonWrapper`
+* `MultiChoiceSegmentedButtonWrapper`
+
 ## 📌 **Navigation & Top App Bars**
 
 * `TopAppBar`
@@ -132,15 +138,23 @@ Paket: `androidx.compose.material3.*`
 * `BottomSheetScaffold`
 * `DropdownMenu`
 * `DropdownMenuItem`
+* `ExposedDropdownMenuBox`
 * `DatePicker`
+* `DatePickerDialog`
+* `DateRangePicker`
 * `TimePicker`
+* `TooltipBox`
+* `PlainTooltip`
+* `RichTooltip`
 
 ## 📌 **Text Inputs**
 
 * `TextField`
 * `OutlinedTextField`
+* `BasicTextField`
+* `BasicSecureTextField` (untuk password)
 * `SearchBar`
-* `SearchView` (terbaru M3)
+* `DockedSearchBar`
 * `ExposedDropdownMenuBox`
 * `ExposedDropdownMenu`
 
@@ -150,6 +164,39 @@ Paket: `androidx.compose.material3.*`
 * `LinearProgressIndicator`
 * `PullToRefreshContainer`
 * `SwipeRefresh` (Accompanist)
+
+## 📌 **Chips** (Material 3)
+
+* `AssistChip`
+* `ElevatedAssistChip`
+* `FilterChip`
+* `ElevatedFilterChip`
+* `InputChip`
+* `SuggestionChip`
+* `ElevatedSuggestionChip`
+
+## 📌 **Carousels** (Material 3)
+
+* `HorizontalMultiBrowseCarousel`
+* `HorizontalUncontainedCarousel`
+
+## 📌 **Lists & Grids Extended**
+
+* `LazyColumn`
+* `LazyRow`
+* `LazyVerticalGrid`
+* `LazyHorizontalGrid`
+* `LazyVerticalStaggeredGrid`
+* `LazyHorizontalStaggeredGrid`
+* `ListItem`
+* `SwipeToDismissBox`
+
+## 📌 **Windows Insets & System UI**
+
+* `WindowInsets`
+* `Spacer`
+* `PaddingValues`
+* `rememberWindowInsets`
 
 ## 📌 **Snackbars**
 
@@ -264,6 +311,52 @@ Paket: `androidx.navigation.compose.*`
 
 ---
 
+# ⭐ **6. State Management & Performance**
+
+## 📌 **State Management**
+
+* `mutableStateOf`
+* `remember`
+* `rememberSaveable`
+* `rememberLazyListState`
+* `derivedStateOf`
+* `produceState`
+* `LaunchedEffect`
+* `DisposableEffect`
+* `SideEffect`
+* `rememberCoroutineScope`
+* `rememberUpdatedState`
+* `snapshotFlow`
+* `rememberInteractedState`
+
+## 📌 **Performance Optimization**
+
+* `@Stable` annotation
+* `@Immutable` annotation
+* `@NonRestartableComposable`
+* `key()` untuk LazyColumn items
+* `CompositionLocal`
+* `CompositionLocalProvider`
+* `LocalInspectionMode`
+* `@ComposableTarget`
+
+## 📌 **Custom Layouts**
+
+* `Layout`
+* `SubcomposeLayout`
+* `LookaheadScope`
+* `MeasurementScope`
+* `BoxWithConstraints`
+
+## 📌 **Testing & Accessibility**
+
+* `createComposeRule`
+* `onNodeWithText`, `onNodeWithTag`, `onNodeWithContentDescription`
+* `Modifier.semantics`
+* `Modifier.clearAndSetSemantics`
+* `Modifier.testTag`
+* `contentDescription`
+
 # ⭐ **7. Accompanist (Tambahan Populer)**
 
 Paket dari Google untuk fitur sementara yang belum masuk Compose core.
@@ -296,7 +389,34 @@ Paket dari Google untuk fitur sementara yang belum masuk Compose core.
 
 ---
 
-# ⭐ **8. Compose Multiplatform / Desktop / Web**
+# ⭐ **8. Advanced Topics & Libraries**
+
+## 📌 **State Management Libraries**
+
+* **Molecule** - Presenter pattern dari Twitter
+* **Orbit MVI** - Model-View-Intent architecture
+* **Decompose** - Navigation & lifecycle management
+* **Revue** - Redux-like state management
+
+## 📌 **Image Loading Libraries**
+
+* **Coil** - `AsyncImage`, `SubcomposeAsyncImage`
+* **Landscapist** - Wrapper untuk Glide/Coil
+* **GlideImage** - Direct Glide integration
+
+## 📌 **Charts & Graphs**
+
+* **Vico** - Modern charts library
+* **MPAndroidChart** - Classic charts with Compose support
+* **LineChart, BarChart, PieChart**
+
+## 📌 **Animations Advanced**
+
+* **Lottie** - Animasi Lottie files
+* **Compose Shaders** - Custom GPU shaders
+* **Dynamic Theme** - Theme berdasarkan context
+
+## 📌 **Compose Multiplatform / Desktop / Web**
 
 Jika kamu juga ingin:
 
@@ -523,5 +643,88 @@ UI/UX Android **bukan hanya komponen**, tapi meliputi:
 * Motion & gestures
 * Struktur informasi
 * Testing & validasi
+
+---
+
+# ⭐ **11. Best Practices Summary**
+
+## 📌 **Performance Tips**
+
+1. **Gunakan `remember` dengan keys yang tepat**
+   ```kotlin
+   // Good
+   val result by remember(key1, key2) { expensiveOperation() }
+
+   // Bad
+   val result by remember { expensiveOperation() } // Key tidak update
+   ```
+
+2. **Gunakan `@Stable` dan `@Immutable` untuk data class**
+   ```kotlin
+   @Stable
+   data class UIState(
+       val isLoading: Boolean,
+       val items: List<Item>
+   )
+   ```
+
+3. **Prefer `LazyColumn` daripada `Column` dengan scroll**
+
+4. **Gunakan `key()` untuk LazyColumn items**
+   ```kotlin
+   LazyColumn {
+       items(items, key = { it.id }) { item ->
+           ItemComposable(item)
+       }
+   }
+   ```
+
+5. **Gunakan `derivedStateOf` untuk derived calculations**
+
+## 📌 **State Management Guidelines**
+
+1. **State Hoisting** - Pindahkan state ke parent terdekat
+2. **Immutable State** - Jangan mutate state langsung
+3. **Single Source of Truth** - Satu tempat untuk setiap state
+4. **Separate State from Events** - Gunakan callback untuk events
+
+## 📌 **Architecture Patterns**
+
+1. **Unidirectional Data Flow (UDF)**
+   ```
+   UI Event → ViewModel → State Update → UI
+   ```
+
+2. **MVVM with Compose**
+   ```kotlin
+   @Composable
+   fun MyScreen(
+       viewModel: MyViewModel = viewModel()
+   ) {
+       val state by viewModel.uiState.collectAsState()
+
+       MyContent(
+           state = state,
+           onEvent = { viewModel.handleEvent(it) }
+       )
+   }
+   ```
+
+3. **MVI (Model-View-Intent)**
+   - Dengan libraries seperti Orbit MVI
+
+## 📌 **Testing Best Practices**
+
+1. **Test behavior, bukan implementation**
+2. **Gunakan testTags untuk testing**
+3. **Test edge cases dan error states**
+4. **Use Compose Testing rules**
+
+## 📌 **Accessibility Guidelines**
+
+1. **Gunakan `contentDescription` untuk images/icons**
+2. **Minimum touch target 48dp**
+3. **Support dynamic font scaling**
+4. **Test dengan TalkBack**
 
 ---

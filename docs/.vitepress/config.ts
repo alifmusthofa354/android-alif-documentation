@@ -28,9 +28,7 @@ export default defineConfig({
       {
         text: "Get Started",
         collapsed: true,
-        items: [
-          { text: "Roadmaps", link: "/document/getstarted/roadmaps" }
-        ],
+        items: [{ text: "Roadmaps", link: "/document/getstarted/roadmaps" }],
       },
       {
         text: "LEVEL 1 BEGINNER",
@@ -173,6 +171,14 @@ export default defineConfig({
               {
                 text: "3.11 Scaffold & AppBar",
                 link: "/document/LEVEL 1 BEGINNER/Fase 3 Jetpack Compose Basics/3.11 Scaffold & AppBar",
+              },
+              {
+                text: "gpt",
+                link: "/document/LEVEL 1 BEGINNER/Fase 3 Jetpack Compose Basics/gpt",
+              },
+              {
+                text: "claude-table",
+                link: "/document/LEVEL 1 BEGINNER/Fase 3 Jetpack Compose Basics/claudetable",
               },
             ],
           },

@@ -209,13 +209,31 @@
 |----|----------|-----------|-----------------|-------------------|
 | 99 | **SwipeToDismissBox** | Box dengan swipe dismiss | state, backgroundContent, modifier, enableDismissFromStartToEnd, enableDismissFromEndToStart, content | `SwipeToDismissBox(state, background = {}) { }` |
 
-## 23. ACCESSIBILITY
+## 23. SEGMENTED BUTTONS
 
 | No | Komponen | Deskripsi | Parameter Utama | Contoh Penggunaan |
 |----|----------|-----------|-----------------|-------------------|
-| 100 | **semantics modifier** | Accessibility semantics | properties, mergeDescendants | `Modifier.semantics { contentDescription = "Button" }` |
+| 100 | **SegmentedButton** | Button untuk grup selection | selected, onClick, label, icon, modifier, colors, enabled, shape | `SegmentedButton(selected, onClick = {}, label = { Text("Option") })` |
+| 101 | **SingleChoiceSegmentedButtonWrapper** | Container untuk single choice segmented buttons | modifier, space, content | `SingleChoiceSegmentedButtonWrapper { SegmentedButton(...) }` |
+| 102 | **MultiChoiceSegmentedButtonWrapper** | Container untuk multi choice segmented buttons | modifier, space, content | `MultiChoiceSegmentedButtonWrapper { SegmentedButton(...) }` |
 
-## 24. **Modifier Extensions**
+## 24. WINDOW INSETS
+
+| No | Komponen | Deskripsi | Parameter Utama | Contoh Penggunaan |
+|----|----------|-----------|-----------------|-------------------|
+| 103 | **WindowInsets** | System bar insets | statusBars, navigationBars, systemBars, displayCutout, ime | `WindowInsets.statusBars` |
+| 104 | **Spacer** | Ruang kosong untuk spacing | modifier | `Spacer(modifier = Modifier.height(16.dp))` |
+| 105 | **PaddingValues** | Padding values untuk containers | calculateStartPadding, calculateTopPadding, calculateEndPadding, calculateBottomPadding | `PaddingValues(16.dp)` |
+
+## 25. ACCESSIBILITY
+
+| No | Komponen | Deskripsi | Parameter Utama | Contoh Penggunaan |
+|----|----------|-----------|-----------------|-------------------|
+| 106 | **semantics modifier** | Accessibility semantics | properties, mergeDescendants | `Modifier.semantics { contentDescription = "Button" }` |
+| 107 | **clearAndSetSemantics** | Replace existing semantics | properties | `Modifier.clearAndSetSemantics { text = AnnotatedString("Custom") }` |
+| 108 | **testTag modifier** | Tag untuk testing | tag | `Modifier.testTag("login_button")` |
+
+## 26. **Modifier Extensions**
 
 Compose juga menyediakan banyak modifier untuk customisasi:
 - `clickable`, `combinedClickable`
@@ -228,7 +246,7 @@ Compose juga menyediakan banyak modifier untuk customisasi:
 - `rotate`, `scale`, `offset`
 - `animateContentSize`
 
-## 25. **Animations**
+## 27. **Animations**
 
 - `AnimatedVisibility`
 - `Crossfade`
@@ -236,7 +254,7 @@ Compose juga menyediakan banyak modifier untuk customisasi:
 - `updateTransition`
 - `AnimatedContent`
 
-## 26. **Accessibility**
+## 28. **Accessibility**
 
 - `semantics` modifier untuk screen readers
 - `contentDescription` untuk images/icons
@@ -264,15 +282,18 @@ Ya, ada banyak komponen lain yang sering digunakan! Berikut tabelnya:
 | 7 | **Box** | Container layout dasar | modifier, contentAlignment, propagateMinConstraints | `Box(Modifier.fillMaxSize()) { }` |
 | 8 | **Column** | Layout vertikal | modifier, verticalArrangement, horizontalAlignment | `Column { Text("1"); Text("2") }` |
 | 9 | **Row** | Layout horizontal | modifier, horizontalArrangement, verticalAlignment | `Row { Text("1"); Text("2") }` |
-| 10 | **clickable** | Modifier untuk click | enabled, onClickLabel, role, onClick | `Modifier.clickable { }` |
-| 11 | **combinedClickable** | Click dengan long press | enabled, onClickLabel, onClick, onDoubleClick, onLongClick | `Modifier.combinedClickable(onLongClick = {}) { }` |
-| 12 | **background** | Background color/brush | color/brush, shape, alpha | `Modifier.background(Color.Red)` |
-| 13 | **border** | Border/outline | width, color/brush, shape | `Modifier.border(2.dp, Color.Black)` |
-| 14 | **clip** | Memotong shape | shape | `Modifier.clip(CircleShape)` |
-| 15 | **horizontalScroll** | Scroll horizontal | state, enabled, flingBehavior, reverseScrolling | `Modifier.horizontalScroll(rememberScrollState())` |
-| 16 | **verticalScroll** | Scroll vertikal | state, enabled, flingBehavior, reverseScrolling | `Modifier.verticalScroll(rememberScrollState())` |
-| 17 | **draggable** | Membuat draggable | state, orientation, enabled, startDragImmediately, onDragStarted, onDragStopped | `Modifier.draggable(state, Orientation.Horizontal)` |
-| 18 | **scrollable** | Membuat scrollable | state, orientation, enabled, reverseDirection | `Modifier.scrollable(state, Orientation.Vertical)` |
+| 10 | **Layout** | Custom layout | modifier, measurePolicy | `Layout(measurePolicy = { measurables, constraints -> })` |
+| 11 | **SubcomposeLayout** | Layout dengan subcomposition | modifier, measurePolicy | `SubcomposeLayout { constraints -> }` |
+| 12 | **LookaheadScope** | Layout dengan lookahead animations | modifier, content | `LookaheadScope { }` |
+| 13 | **clickable** | Modifier untuk click | enabled, onClickLabel, role, onClick | `Modifier.clickable { }` |
+| 14 | **combinedClickable** | Click dengan long press | enabled, onClickLabel, onClick, onDoubleClick, onLongClick | `Modifier.combinedClickable(onLongClick = {}) { }` |
+| 15 | **background** | Background color/brush | color/brush, shape, alpha | `Modifier.background(Color.Red)` |
+| 16 | **border** | Border/outline | width, color/brush, shape | `Modifier.border(2.dp, Color.Black)` |
+| 17 | **clip** | Memotong shape | shape | `Modifier.clip(CircleShape)` |
+| 18 | **horizontalScroll** | Scroll horizontal | state, enabled, flingBehavior, reverseScrolling | `Modifier.horizontalScroll(rememberScrollState())` |
+| 19 | **verticalScroll** | Scroll vertikal | state, enabled, flingBehavior, reverseScrolling | `Modifier.verticalScroll(rememberScrollState())` |
+| 20 | **draggable** | Membuat draggable | state, orientation, enabled, startDragImmediately, onDragStarted, onDragStopped | `Modifier.draggable(state, Orientation.Horizontal)` |
+| 21 | **scrollable** | Membuat scrollable | state, orientation, enabled, reverseDirection | `Modifier.scrollable(state, Orientation.Vertical)` |
 
 ## 2. LAYOUT COMPONENTS (androidx.compose.foundation.layout)
 
@@ -354,6 +375,9 @@ Ya, ada banyak komponen lain yang sering digunakan! Berikut tabelnya:
 |----|----------|-----------|-----------------|-------------------|
 | 63 | **LazyPagingItems** | Paging items untuk LazyList | - | `val lazyPagingItems = pagingData.collectAsLazyPagingItems()` |
 | 64 | **items (Paging)** | Extension untuk paging items | lazyPagingItems, key, itemContent | `items(lazyPagingItems) { item -> }` |
+| 65 | **rememberLazyListState** | State untuk LazyColumn/Row | initialFirstVisibleItemIndex, initialFirstVisibleItemScrollOffset | `val state = rememberLazyListState()` |
+| 66 | **LazyListScope** | Scope untuk LazyColumn/Row items | item, items, itemsIndexed, stickyHeader | `LazyListScope. { items(10) { index -> } }` |
+| 67 | **LazyListState** | Mengontrol scroll state | firstVisibleItemIndex, firstVisibleItemScrollOffset, animateScrollToItem | `state.animateScrollToItem(index)` |
 
 ## 9. COMPOSE RUNTIME
 
@@ -369,6 +393,9 @@ Ya, ada banyak komponen lain yang sering digunakan! Berikut tabelnya:
 | 72 | **snapshotFlow** | Flow dari Compose state | block | `snapshotFlow { scrollState.value }.collect { }` |
 | 73 | **rememberCoroutineScope** | CoroutineScope untuk composable | - | `val scope = rememberCoroutineScope()` |
 | 74 | **rememberUpdatedState** | Capture latest value | newValue | `val currentOnClick by rememberUpdatedState(onClick)` |
+| 75 | **rememberWindowInsets** | Window insets state | insets | `val insets = rememberWindowInsets()` |
+| 76 | **rememberInteractedState** | Interaction state | initialValue, isInitiallyInteracted | `val state = rememberInteractedState()` |
+| 77 | **mutableStateOf** | Mutable state holder | value, policy | `val state = mutableStateOf(false)` |
 
 ## 10. COMPOSE UI GRAPHICS
 
@@ -400,7 +427,24 @@ Ya, ada banyak komponen lain yang sering digunakan! Berikut tabelnya:
 | 88 | **calculateWindowSizeClass** | Window size class | activity | `val windowSize = calculateWindowSizeClass(this)` |
 | 89 | **WindowSizeClass** | Adaptive layout helper | widthSizeClass, heightSizeClass | `when (windowSize.widthSizeClass) { WindowWidthSizeClass.Compact -> }` |
 
-## 13. CAMERA & MEDIA
+## 13. GESTURE DETECTION
+
+| No | Komponen | Deskripsi | Parameter Utama | Contoh Penggunaan |
+|----|----------|-----------|-----------------|-------------------|
+| 90 | **detectTapGestures** | Mendeteksi tap gestures | onDoubleTap, onLongPress, onPress, onTap | `pointerInput(Unit) { detectTapGestures { } }` |
+| 91 | **detectDragGestures** | Mendeteksi drag gestures | onDragStart, onDragEnd, onDragCancel, onDrag | `pointerInput(Unit) { detectDragGestures { } }` |
+| 92 | **detectTransformGestures** | Mendeteksi transform gestures (pan, zoom, rotate) | onGesture, centroid, pan, zoom, rotation | `pointerInput(Unit) { detectTransformGestures { } }` |
+| 93 | **forEachGesture** | Gesture iterator | block | `forEachGesture { }` |
+| 94 | **awaitFirstDown** | Menunggu first down event | pass | `val down = awaitFirstDown(pass = PointerInputChange(pass))` |
+| 95 | **awaitPointerEvent** | Menunggu pointer event | pass | `val event = awaitPointerEvent(pass = PointerInputChange(pass))` |
+| 96 | **drag** | Drag gesture handler | dragPriority, block | `drag(pointerId) { }` |
+| 97 | **horizontalDrag** | Horizontal drag handler | block | `horizontalDrag(pointerId) { }` |
+| 98 | **verticalDrag** | Vertical drag handler | block | `verticalDrag(pointerId) { }` |
+| 99 | **awaitDragOrCancellation** | Menunggu drag atau cancel | pointerId | `awaitDragOrCancellation(pointerId)` |
+| 100 | **DragEvent** | Event data untuk drag | changedPosition, totalPosition, pressure | `dragEvent.changedPosition` |
+| 101 | **TouchSlop** | Minimum distance untuk drag | - | `TouchSlopProvider` |
+
+## 14. CAMERA & MEDIA
 
 | No | Komponen | Deskripsi | Parameter Utama | Contoh Penggunaan |
 |----|----------|-----------|-----------------|-------------------|
@@ -435,16 +479,74 @@ Ya, ada banyak komponen lain yang sering digunakan! Berikut tabelnya:
 
 | No | Komponen | Deskripsi | Library | Contoh Penggunaan |
 |----|----------|-----------|---------|-------------------|
-| 101 | **QRCodeGenerator** | Generate QR code | ZXing | Custom implementation dengan Canvas |
-| 102 | **BarcodeScanner** | Scan barcode | ML Kit | Custom implementation dengan CameraX |
+| 103 | **QRCodeGenerator** | Generate QR code | ZXing | Custom implementation dengan Canvas |
+| 104 | **BarcodeScanner** | Scan barcode | ML Kit | Custom implementation dengan CameraX |
 
-## 18. PULL TO REFRESH (Native M3)
+## 18. PERFORMANCE OPTIMIZATION
+
+| No | Komponen | Deskripsi | Parameter Utama | Contoh Penggunaan |
+|----|----------|-----------|-----------------|-------------------|
+| 105 | **remember (with keys)** | Remember dengan keys untuk optimization | key1, key2, ..., calculation | `remember(key1, key2) { expensiveOperation() }` |
+| 106 | **key() for LazyItems** | Key untuk item identity di LazyColumn | key | `LazyColumn { items(items, key = { it.id }) { } }` |
+| 107 | **@Stable annotation** | Membuat class stable untuk performance | - | `@Stable data class UIState(...)` |
+| 108 | **@Immutable annotation** | Membuat class immutable untuk performance | - | `@Immutable data class Item(...)` |
+| 109 | **derivedStateOf** | Optimasi derived state | calculation | `val filtered by remember { derivedStateOf { list.filter(...) } }` |
+| 110 | **CompositionLocal** | Share data down UI tree | current, ProvidableCompositionLocal, staticCompositionLocalOf | `val LocalColor = staticCompositionLocalOf { Color.Blue }` |
+| 111 | **CompositionLocalProvider** | Provider untuk CompositionLocal | values, content | `CompositionLocalProvider(LocalColor provides Color.Red) { }` |
+| 112 | **LocalInspectionMode** | Deteksi mode preview/inspection | - | `if (LocalInspectionMode.current) { }` |
+| 113 | **Restartable/NonRestartable** | Function annotations untuk control restart | - | `@NonRestartableComposable @Composable fun ...` |
+| 114 | **@ComposableTarget** | Kontrol target compilation | - | `@ComposableTarget annotation` |
+
+## 19. PULL TO REFRESH (Native M3)
 
 | No | Komponen | Deskripsi | Parameter Utama | Contoh Penggunaan |
 |----|----------|-----------|-----------------|-------------------|
 | 103 | **PullToRefreshContainer** | Pull refresh indicator | state, modifier, containerColor | Sudah dijelaskan di tabel Material 3 |
 
 ---
+
+## 20. ADVANCED TOPICS
+
+| No | Komponen/Topik | Deskripsi | Parameter Utama | Contoh Penggunaan |
+|----|----------------|-----------|-----------------|-------------------|
+| 115 | **Compose Compiler Metrics** | Tool untuk menganalisis stability & restarts | - | `./gradlew assembleRelease -P android.enableCompilerReports=true` |
+| 116 | **Skippability** | Kemampuan composable untuk skip recomposition | - | Function harus stabil dan param tidak berubah |
+| 117 | **Composition vs Recomposition** | Proses pembuatan dan update UI | - | `@Composable fun MyComposable() { }` |
+| 118 | **State Hoisting** | Pattern untuk memindahkan state ke atas | - | `@Composable fun MyComposable(value: String, onValueChange: (String) -> Unit) { }` |
+| 119 | **Unidirectional Data Flow (UDF)** | Pattern arus data satu arah | - | `UI -> Event -> ViewModel -> State -> UI` |
+| 120 | **Molecule** | State management library dari Twitter | presenter | `@Composable fun counterPresenter(): StateFlow<Int>` |
+| 121 | **Orbit MVI** | MVI architecture for Compose | container, state, sideEffect | `ContainerHost<State, SideEffect>` |
+| 122 | **Decompose** | Navigation & lifecycle management | root, stack navigation | `val root = DefaultComponentContext(...)` |
+| 123 | **Revue** | Event-driven state management | reducer, middleware | `RevolutionStore(initialState, reducer, middleware)` |
+| 124 | **Compose Shaders** | Custom GPU shaders | shader, shaderSource | `val shader = RuntimeShader(shaderSource)` |
+| 125 | **Dynamic Theme** | Theme yang berubah berdasarkan context | - | `MaterialTheme(colorScheme = dynamicColorScheme)` |
+
+## Best Practices Summary:
+
+### **Performance:**
+1. Gunakan `remember` dengan keys yang tepat
+2. Hindari inline functions di composable jika tidak perlu
+3. Gunakan `@Stable` dan `@Immutable` untuk data class
+4. Prefer `LazyColumn` daripada `Column` dengan scroll
+5. Gunakan `derivedStateOf` untuk derived calculations
+
+### **State Management:**
+1. Hoist state ke parent yang paling dekat
+2. Gunakan immutable state
+3. Single source of truth untuk setiap state
+4. Separasi antara state dan events
+
+### **Testing:**
+1. Test behavior, bukan implementation
+2. Gunakan testTags untuk testing
+3. Test edge cases dan error states
+4. Use Compose Testing rules
+
+### **Architecture:**
+1. Follow Unidirectional Data Flow
+2. Separation of concerns
+3. Dependency injection
+4. Clean architecture layers
 
 ## Library Populer Tambahan:
 
@@ -458,5 +560,11 @@ Ya, ada banyak komponen lain yang sering digunakan! Berikut tabelnya:
 - **Compose-Calendar**: Calendar component
 - **Compose-RatingBar**: Rating bar
 - **Landscapist**: Image loading (Glide/Coil wrapper)
+
+### **State Management Libraries:**
+- **Molecule**: Presenter pattern with Compose
+- **Orbit MVI**: Model-View-Intent architecture
+- **Decompose**: Navigation & lifecycle management
+- **Revue**: Redux-like state management
 
 Komponen-komponen ini sangat berguna untuk membangun aplikasi yang kompleks dan modern dengan Jetpack Compose!
